@@ -1,0 +1,8 @@
+## Secret
+*.key
+
+## database
+*.sql
+
+## IDs
+.idea
