@@ -1,2 +1,2 @@
 # trading-bot
-A simple trading bot for bitfinx
+A simple trading bot for bitfinex
