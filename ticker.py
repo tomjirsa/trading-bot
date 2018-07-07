@@ -25,7 +25,7 @@ def main():
     print(datetime.fromtimestamp(int(date)).strftime('%Y-%m-%d %H:%M:%S') + "  Collecting ticker for pair " + pair)
 
     # Insert into DB
-    database = Database(config["common"]["database"])
+    database = Database(path + "/" + config["common"]["database"])
     database.createTable(pair,config["ticker"]["table_definition"])
     database.insertRecord(pair,ticker_json)
     database.closeConnection()
