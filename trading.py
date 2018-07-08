@@ -14,8 +14,10 @@ def main():
         config = json.load(f)
 
     log_record = datetime.now().isoformat()
+    database_path = path + "/" + config["common"]["database"]
 
-    strategy = BasicStrategy(config["common"]["database"])
+
+    strategy = BasicStrategy(database_path)
     trend = strategy.getFutureTrend(config["common"]["trading_pair"],config["strategy"]["basic"])
 
     investment_coef = 0.5
@@ -23,7 +25,7 @@ def main():
     # Ledger
     table_name = "ledger_"+ config["common"]["trading_pair"]
 
-    conn = Database(path + "/" + config["common"]["database"])
+    conn = Database(database_path)
     if config["trading"]["ledger"]["init"] == 0:
         conn.createTable(table_name, config["trading"]["ledger"]["table_definition"])
         conn.insertRecord(table_name,config["trading"]["ledger"]["table_init"])
