@@ -43,7 +43,7 @@ def main():
         btc_to_buy = usd_to_spend/last_ticker["bid"]
         usd_current = last_ledger["usd_current"] - usd_to_spend
         btc_current = last_ledger["btc_current"] + btc_to_buy
-        current_value = usd_current + btc_current * last_ledger["mid"]
+        current_value = usd_current + btc_current * last_ticker["mid"]
 
         leder_record = {
             "timestamp": last_ticker["timestamp"],
@@ -62,7 +62,7 @@ def main():
         usd_to_buy = last_ticker["bid"] * btc_to_spend
         usd_current = last_ledger["usd_current"] + usd_to_buy
         btc_current = last_ledger["btc_current"] - btc_to_spend
-        current_value = usd_current + btc_current * last_ledger["mid"]
+        current_value = usd_current + btc_current * last_ticker["mid"]
 
         leder_record = {
             "timestamp": last_ticker["timestamp"],
