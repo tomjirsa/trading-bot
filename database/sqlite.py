@@ -25,6 +25,7 @@ class Database:
             print("Cannot create table: ", e)
             raise
 
+
     def insertRecord(self, table_name, data):
         """
         Insert record if not exists, return new records
@@ -64,7 +65,7 @@ class Database:
                number_of_daysL: number of days back
         :return:
         """
-        since = int(time.time() - number_of_hours * 60 * 60)
+        since = int(self.getNow() - number_of_hours * 60 * 60)
 
         query = "SELECT * FROM %s WHERE timestamp > %s" % (table_name, str(since))
         try:
@@ -89,7 +90,15 @@ class Database:
         except Exception as e:
             print("Can not get last inserted value: ", e)
             raise
-        return
+        return result
+
+    def getNow(self):
+        """
+        Returns now in unix timestamp
+        :return:
+        """
+        now = time.time()
+        return now
 
     def closeConnection(self):
         self.db_conn.close()

@@ -2,6 +2,7 @@ from database.sqlite import Database
 import pandas as pd
 from matplotlib import pyplot
 from statsmodels.formula.api import ols  as ols
+import sys
 
 
 class BasicStrategy:
@@ -16,6 +17,9 @@ class BasicStrategy:
         :return: Dataframe with data with timestamp set as index
         """
         data_to_analyse = self.conn.getDataNHoursBack(table_name, timewindow)
+        if not data_to_analyse:
+            print("No data to analyse: ", data_to_analyse)
+            return []
         serie = pd.DataFrame(data_to_analyse)
         serie.set_index("timestamp", inplace=True)
         return serie
